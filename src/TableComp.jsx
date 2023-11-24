@@ -82,16 +82,16 @@ const handleDownload = async () => {
     //   // ... more data
     // ];
     
-    // Create a new workbook
+ 
     const workbook = xlsx.utils.book_new();
     const sheetName = 'Sheet1';
     
-    // Convert JSON data to a worksheet
+
     const worksheet = xlsx.utils.json_to_sheet(products);
 
     console.log(worksheet)
     
-    // Set cell styles (example)
+ 
     Object.keys(worksheet).forEach((k) => {
       if(k.includes('1')  ){
         worksheet[k].s = {   fill: { fgColor: { rgb: "FF0000" } } };
@@ -101,12 +101,10 @@ const handleDownload = async () => {
         worksheet[k].s = {   fill: { fgColor: { rgb: "4287f5" } } };
       }
     })
-    // Applying bold font to cell A1
-    
-    // Add the worksheet to the workbook
+  
+   
     xlsx.utils.book_append_sheet(workbook, worksheet, sheetName);
     
-    // Write the workbook to an XLSX file
     xlsx.writeFile(workbook, 'output.xlsx');
 };
 
